@@ -1,0 +1,317 @@
+# Oyun kodlaması bu dosyadadir.
+
+# Oyundaki karakterleri tanimla. Renk argumani karakterin
+# isminin rengini belirler.
+define e = Character("Asistan")
+define i = Character("[isim]")
+define k = Character("Patron")
+define h = Character("HasanH")
+
+
+image kız:
+    "kız.png"
+    zoom 0.7
+image kız_mutlu:
+    "kız_mutlu"
+    zoom 0.7
+image kız_normal:
+    "kız_normal.png"
+    zoom 0.7
+image kız_üzgün:
+    "kız_üzgün.png"
+    zoom 0.7
+image kız_şaşkın:
+    "kız_şaşkın.png"
+    zoom 0.7
+image kız_sevinçli:
+    "kız_sevinçli.png"
+    zoom 0.7
+image kız_sinirli:
+    "kız_sinirli.png"
+    zoom 0.7
+image kız_sinirli2:
+    "kız_sinirli2.png"
+    zoom 0.7
+
+image boss:
+    "boss.png"
+    zoom 0.7
+
+image boss_sinirli:
+    "boss_sinirli.png"
+    zoom 0.7
+
+image boss2:
+    "boss2.png"
+    zoom 0.7
+
+image boss_mutlu:
+    "boss_mutlu.png"
+    zoom 0.7
+
+image boss_mutlu2:
+    "boss_mutlu.png"
+    zoom 1.0
+
+image şok:
+    "şok.png"
+
+image siyah:
+    "siyah.jpg"
+
+image beyaz:
+    "beyaz.jpg"
+
+image beyaz2:
+    "beyaz.jpg"
+    zoom 3.0
+
+image beyaz3:
+    "beyaz.jpg"
+    zoom 1.5
+
+label start:
+
+    scene bg
+
+play music "doki.mp3"
+
+show kız at center
+e "Merhaba, ben buranın asistanıyım."
+
+label soru:
+$ isim = renpy.input("Adınız nedir acaba?").lower()
+
+# YAZILABİLECKELER #
+if isim in ["nigga", "yarrak", "amcık", "am", "sik", "çük", "yarak", "taşak", "anan", "göt deliği", "taşak", "taşşak", "göt", "sakso,", "anal", "sikiş"]:
+    hide kız
+    show kız_sinirli2
+    stop music
+    play sound "dun.mp3"
+    e "ÇOK AYIP!!"
+    e "KOVULDUNUZ!"
+    "KÜFÜR SONU {p}Küfür etmemelisin."
+    jump bitir
+
+
+
+if isim in ["emir", "emir güzel",]:
+    hide kız
+    show kız_sevinçli
+    e "Merhaba Emir Bey."
+    e "LINUX'U SİKEYİM, UNITY'İ SİKEYİM, GODOT KRALDIR LANNNN."
+    e "GTRXXXX ARABA ADI MI ABİİİİ"
+    e "Hahahaha, Hasan Bey bunları size söylememi istedi."
+    e "Para karşılığında tabii."
+    e "Neyse, hoş geldiniz Emir Bey."
+    jump devam
+
+
+    
+if isim in ["ceren", "ceren alaçayır", "Ceren"]:
+    hide kız
+    show kız_sinirli2
+    stop music
+    play sound "dun.mp3"
+    e "Allahın malı niye böyle bi yalan söylersin ki yani"
+    e "Ceren buraya gelebilecek biri değil."
+    e "Güvenlikler onu içeri almazdı."
+    e "Sen sadece onun adını veren ama onun gibi görünmeyen bir KANCIKSIN."
+    e "DEFOL GİT LAN BURADAN PİÇÇÇÇÇÇÇÇÇÇÇÇ"
+    "UCUBE SONU {p}Başka birinin kılığına girmeyi deneme bile."
+    jump bitir
+
+
+else:
+    stop music
+    play sound "dun.mp3"
+    hide kız
+    show kız_şaşkın
+    e "Bu isimde birinin randevusu yok."
+    e "Üzgünüm, iyi günler!"
+    jump bitir
+
+label devam:
+hide kız_sevinçli
+show kız
+e "Konumuza dönelim."
+e "Buraya iş için gelmiştiniz, değil mi?"
+menu:
+    "Evet":
+        e "Güzel!"
+e "Bizim işimize girmeyi herkes ister ama kimse başaramaz!"
+e "Bakalım siz başarabilecek misiniz."
+e "Az sonra patron geri dönecek."
+e "Acil bir işi çıktı da."
+e "Siz biraz oturun isterseniz."
+i "Tabii."
+hide kız
+i "..."
+i "..."
+i "..."
+i "..."
+i "..."
+i "..."
+i "..."
+i "..."
+show boss
+k "Merhaba [isim]!"
+k "Çok beklettim mi?"
+
+menu:
+    "Evet":
+        stop music
+        play sound "dun.mp3"
+        hide boss
+        show boss_sinirli
+       
+        if isim in ["ahmet"]:
+            k "Zaten burada olmaman gerekiyordu."
+            k "Bir de 2 dakika bekleyemezmiş."
+        k "Ne diyeyim ki yani... İyi günler."
+        "BAZEN BEKLEMEK GEREKİR SONU {p}Sabırsızlar giremez."
+        jump bitir
+        
+    "Hayır":
+        k "Tamam güzel."
+
+hide boss
+show boss_mutlu
+k "Ne yalan söyleyeyim, bu soruya cevabın evet olsaydı buradan gönderecektim seni [isim]."
+k "Ama güzel bir başlangıç yaptın!"
+k "Devam edelim."
+hide boss_mutlu
+show boss
+
+$ age = int(renpy.input("Kaç yaşındasın acaba?", "", allow="0123456789"))
+if age <= 17:
+        stop music
+        play sound "dun.mp3"
+        hide boss
+        show boss_sinirli
+        k "GİREMEZSİN!"
+        k "18 YAŞINDAN KÜÇÜKSEN NEDEN BURADASIN Kİ [isim]?"
+        k "DEFOL!"
+        "SÜBYAN SONU {p}Küçükler giremez."
+        jump bitir
+
+elif age >= 18:
+        k "Heh güzel!"
+        k "18 yaşından küçük olsaydın seni kovmak zorunda kalacaktım."
+
+k "Adın: [isim], Yaşın: [age]"
+k "Güzel."
+k "Biliyorsun, buraya her geleni alamıyoruz."
+k "Titizlikle hazırlanmış bir listemiz var."
+k "O yüzden emin değilsen şimdi söylemelisin."
+k "İşe girmeyi onaylıyor musun?"
+$   onay = renpy.input("Onaylıyorsan lütfen şu belgeye 'Onaylıyorum' yaz.").lower()
+if onay in ["onaylıyorum"]:
+        hide boss
+        show boss_mutlu
+        k "Harika."
+        jump devam2
+else:
+        stop music
+        play sound "dun.mp3"
+        hide boss
+        show boss_sinirli
+        k "Beni boşuna uğraştırdın."
+        "UĞRAŞTIRMA MİLLETİ SONU {p}Uğraştırma milleti artık [isim]."
+        jump bitir
+
+label devam2:
+hide boss
+show boss2
+k "Sana sözleşmeyi okuyacağım, zaten birkaç madde var."
+k "İşteyken başınıza bir şey gelmesi durumunda sorumluluk size aittir."
+k "İşe girerken mideniz ve bağırsaklarınız tamamen boş olmalıdır. Yoksa ölümcül risklere sebep olabilir."
+k "İşteyken odanız tamamen karanlık tutulacaktır, ailenizle ve arkadaşlarınızla olan iletişiminiz sıfıra inecektir."
+k "İşe girmek için talep edilen ücret 50.000TL'dir."
+k "Ama siz işe girmeye gelen ilk kişilerden biri olduğunuz için sizden para talep etmeyeceğiz."
+k "Onaylıyor musunuz?"
+menu:
+    "Onaylıyorum":
+        k "Evet, gayet makul bir teklif."
+        jump devam3
+
+    "Onaylamıyorum":
+        hide boss2
+        show boss_sinirli
+        stop music
+        play sound "dun.mp3"
+        k "Beni boşuna uğraştırdın."
+        k "Daha önemli işlerim vardı..."
+        "UĞRAŞTIRMA MİLLETİ SONU 2 {p}Uğraştırma milleti artık [isim]."
+        jump bitir
+
+
+label devam3:
+k "İş içerisindeyken sürekli rüya halinde olacaksınız."
+k "Ne yazık ki işten çıkacağınız tarih belirlenemiyor."
+k "Henüz bilimsel gelişmeler o raddede değil."
+k "Ama tahminlerimize göre 100 yıl içerisinde kesin olarak hayata geri döneceksiniz."
+
+menu:
+    "Ne diyorsun sen?":
+        jump nediyon
+
+label nediyon:
+stop music
+k "İŞten bahsediyorum."
+play music "korku.mp3"
+play sound "dun.mp3"
+k "İnsan Şoklatıcı."
+show şok
+k "İnsanları şokluyoruz ve tedavi bulunduğunda tekrar hayata döndürüyoruz."
+k "Şu anda gördüğün minik yaratık gibi."
+hide şok
+show boss_mutlu
+menu:
+    "Ben bunu bilmiyordum.":
+        k "Bunu bilmiyorsan neden buradasın ki?"
+        k "Hiç mi merak etmedin buraya gelirken?"
+        k "Yalan söylemeyi bırak."
+menu:
+    "Yalan söylemiyorum.":
+        k "Zaten çoktan onayladınız her şeyi."
+        k "İşlemlerinizi başlatıyorum."
+        jump ah
+
+label ah:
+show boss_mutlu2
+with vpunch
+hide boss
+with vpunch
+hide bg
+hide boss
+show siyah
+i "Neler oluyor?"
+i "Ensemde minik bir şey hissettim."
+i "Bir iğne gibiydi."
+
+
+show beyaz with fade
+i "Bu da ne?"
+show beyaz3 with fade
+i "Neler oluyor?"
+show beyaz2 with fade
+i "Bir ışık..."
+play sound "ayak.mp3" volume(5.0)
+i "Ayak sesleri..."
+i "Gözlerimi açamıyorum..."
+i "Şu an İnsan Şoklatıcının içinde miyim?.."
+i "Ama beynimin de donmuş olması gerekmiyor muydu?"
+play sound "gülüş.mp3" volume(5.0)
+i "YILLARCA BÖYLE Mİ BEKLEYECEĞİM?????"
+i "..."
+i "..."
+i "..."
+i "..."
+i "..."
+i "..."
+i "..."
+i "..."
+"GERÇEK SON {p}100 yıl boyunca bilincin açık şekilde bekleyeceksin [isim]."
+label bitir:
+return
